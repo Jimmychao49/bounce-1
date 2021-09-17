@@ -1,6 +1,10 @@
 // globale variabelen
 var bal = new Bal(50, 100);
 
+
+var ballen = [];
+
+
 /**
  * setup
  * de code in deze functie wordt één keer uitgevoerd door
@@ -9,6 +13,20 @@ var bal = new Bal(50, 100);
 function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
+
+  for (var i = 0; i < 25; i++) {
+    var randomx = random(50, 1230);
+    var randomy = random(50, 670);
+    var randomSpeedX = random (-5, 5);
+    var randomSpeedY = random (-5, 5);
+
+    var bal = new Bal(randomx, randomy, randomSpeedX, randomSpeedY);
+
+    ballen.push(bal);
+  }
+
+  var superbal = new Superbal(50, 100, 10,10);
+  ballen.push(superbal);
 
 }
 
@@ -22,6 +40,8 @@ function draw() {
   // Kleur de achtergrond blauw, zodat je het kunt zien
   background('blue');
 
-  bal.show();
-  bal.update();
+  for(var i = 0; i < ballen.length; i++) {
+    ballen[i].show();
+    ballen[i].update();
+  }
 }
